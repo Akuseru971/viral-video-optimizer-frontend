@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Viral Video Optimizer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 1.1em;
+    }
+    
+    .credit-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .credit-info {
+      font-size: 1.2em;
+    }
+    
+    .btn-buy-credits {
+      background: white;
+      color: #667eea;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    
+    .btn-buy-credits:hover {
+      transform: scale(1.05);
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 1.1em;
+    }
+    
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s;
+    }
+    
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .btn-generate {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-generate:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+    
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .results {
+      display: none;
+      margin-top: 30px;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 15px;
+    }
+    
+    .results h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    
+    .hashtags, .music {
+      margin-bottom: 25px;
+    }
+    
+    .hashtags h3, .music h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+    
+    .hashtag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .hashtag {
+      background: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: #667eea;
+      font-weight: 500;
+      border: 2px solid #667eea;
+    }
+    
+    .music-track {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .music-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    
+    .music-artist {
+      color: #666;
+      font-size: 0.9em;
+    }
+    
+    .virality-score {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+    
+    .score-value {
+      font-size: 4em;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .score-label {
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎬 TikTok Viral Assistant</h1>
+      <p class="subtitle">Générez des recommandations virales pour vos vidéos TikTok</p>
+    </header>
+
+    <div class="credit-banner">
+      <div class="credit-info">
+        🎟️ Crédits: <strong id="creditCount">1</strong>
+      </div>
+      <button class="btn-buy-credits" id="buyCreditsBtn">💳 Acheter Plus de Crédits</button>
+    </div>
+
+    <form id="videoForm">
+      <div class="form-group">
+        <label for="videoUrl">🔗 URL de la Vidéo TikTok</label>
+        <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/@username/video/123456" required>
+      </div>
+
+      <div class="form-group">
+        <label for="platform">📱 Plateforme</label>
+        <select id="platform">
+          <option value="tiktok">TikTok</option>
+          <option value="instagram">Instagram</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="videoDesc">📝 Description de la Vidéo</label>
+        <textarea id="videoDesc" placeholder="Décrivez le contenu de votre vidéo..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="niche">🎯 Niche / Catégorie</label>
+        <select id="niche">
+          <option value="food">🍔 Food & Cooking</option>
+          <option value="beauty">💄 Beauty & Cosmetics</option>
+          <option value="tech">📱 Tech & Gadgets</option>
+          <option value="fashion">👗 Fashion & Style</option>
+          <option value="fitness">💪 Fitness & Sports</option>
+          <option value="lifestyle">✨ Lifestyle</option>
+          <option value="ecommerce">🛒 General E-commerce</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-generate" id="generateBtn">
+        ✨ Générer Recommandations (1 crédit)
+      </button>
+    </form>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Analyse en cours avec l'IA...</p>
+    </div>
+
+    <div class="results" id="results">
+      <h2>📊 Résultats de l'Analyse</h2>
+      
+      <div class="hashtags">
+        <h3>🔥 Hashtags Tendance</h3>
+        <div class="hashtag-list" id="trendingHashtags"></div>
+      </div>
+
+      <div class="hashtags">
+        <h3>🎯 Hashtags de Niche</h3>
+        <div class="hashtag-list" id="nicheHashtags"></div>
+      </div>
+
+      <div class="music">
+        <h3>🎵 Recommandations Musicales</h3>
+        <div id="musicTracks"></div>
+      </div>
+
+      <div class="virality-score">
+        <div class="score-value" id="scoreValue">0</div>
+        <div class="score-label">Score de Viralité</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'https://video-style-cloner-backend-production.up.railway.app/test';
+    let credits = 1;
+
+    const form = document.getElementById('videoForm');
+    const loading = document.getElementById('loading');
+    const results = document.getElementById('results');
+    const generateBtn = document.getElementById('generateBtn');
+    const creditCount = document.getElementById('creditCount');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (credits <= 0) {
+        alert('❌ Vous n\'avez plus de crédits! Achetez-en plus pour continuer.');
+        return;
+      }
+
+      const videoUrl = document.getElementById('videoUrl').value;
+      const platform = document.getElementById('platform').value;
+      const videoDesc = document.getElementById('videoDesc').value;
+      const niche = document.getElementById('niche').value;
+
+      // Afficher le loading
+      form.style.display = 'none';
+      loading.style.display = 'block';
+      results.style.display = 'none';
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            video_url: videoUrl,
+            platform: platform
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Déduire 1 crédit
+          credits--;
+          creditCount.textContent = credits;
+
+          // Afficher les résultats
+          displayResults(data.data);
+        } else {
+          throw new Error(data.error || 'Erreur inconnue');
+        }
+      } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+      } finally {
+        form.style.display = 'block';
+        loading.style.display = 'none';
+      }
+    });
+
+    function displayResults(data) {
+      // Hashtags Tendance
+      const trendingContainer = document.getElementById('trendingHashtags');
+      trendingContainer.innerHTML = '';
+      if (data.trending_hashtags) {
+        data.trending_hashtags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'hashtag';
+          span.textContent = tag;
+          trendingContainer.appendChild(span);
+        });
+      }
+
+      // Hashtags de Niche
+      const nicheContainer = document.getElementById('nicheHashtags');
+      nicheContainer.innerHTML = '';
+      if (data.niche_hashtags) {
+        data.niche_hashtags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'hashtag';
+          span.textContent = tag;
+          nicheContainer.appendChild(span);
+        });
+      }
+
+      // Musique
+      const musicContainer = document.getElementById('musicTracks');
+      musicContainer.innerHTML = '';
+      if (data.music_recommendations) {
+        data.music_recommendations.forEach(track => {
+          const div = document.createElement('div');
+          div.className = 'music-track';
+          div.innerHTML = `
+            <div class="music-title">🎵 ${track.title}</div>
+            <div class="music-artist">👤 ${track.artist}</div>
+          `;
+          musicContainer.appendChild(div);
+        });
+      }
+
+      // Score de Viralité
+      const scoreElement = document.getElementById('scoreValue');
+      if (data.virality_score) {
+        scoreElement.textContent = data.virality_score;
+      }
+
+      // Afficher les résultats
+      results.style.display = 'block';
+    }
+
+    // Bouton acheter des crédits
+    document.getElementById('buyCreditsBtn').addEventListener('click', () => {
+      alert('💳 Fonctionnalité d\'achat de crédits à venir!');
+    });
+  </script>
+</body>
+</html>
