@@ -239,19 +239,19 @@
 
     <div class="credit-banner">
       <div class="credit-info">
-        🎟️ Crédits: <strong id="creditCount">1</strong>
+        🎟️ Credits: <strong id="creditCount">1</strong>
       </div>
       <button class="btn-buy-credits" id="buyCreditsBtn">💳 Acheter Plus de Crédits</button>
     </div>
 
     <form id="videoForm">
       <div class="form-group">
-        <label for="videoUrl">🔗 URL de la Vidéo TikTok</label>
+        <label for="videoUrl">🔗 Video URL TikTok</label>
         <input type="text" id="videoUrl" placeholder="https://www.tiktok.com/@username/video/123456" required>
       </div>
 
       <div class="form-group">
-        <label for="platform">📱 Plateforme</label>
+        <label for="platform">📱 Platform</label>
         <select id="platform">
           <option value="tiktok">TikTok</option>
           <option value="instagram">Instagram</option>
@@ -259,12 +259,12 @@
       </div>
 
       <div class="form-group">
-        <label for="videoDesc">📝 Description de la Vidéo</label>
-        <textarea id="videoDesc" placeholder="Décrivez le contenu de votre vidéo..." required></textarea>
+        <label for="videoDesc">📝 Description of the Video</label>
+        <textarea id="videoDesc" placeholder="Describe the content of your videoo..." required></textarea>
       </div>
 
       <div class="form-group">
-        <label for="niche">🎯 Niche / Catégorie</label>
+        <label for="niche">🎯 Niche / Category</label>
         <select id="niche">
           <option value="food">🍔 Food & Cooking</option>
           <option value="beauty">💄 Beauty & Cosmetics</option>
@@ -277,36 +277,36 @@
       </div>
 
       <button type="submit" class="btn-generate" id="generateBtn">
-        ✨ Générer Recommandations (1 crédit)
+        ✨ Generate Recommendations (1 credit)
       </button>
     </form>
 
     <div class="loading" id="loading">
       <div class="spinner"></div>
-      <p>Analyse en cours avec l'IA...</p>
+      <p>Analyzing with AI...</p>
     </div>
 
     <div class="results" id="results">
-      <h2>📊 Résultats de l'Analyse</h2>
+      <h2>📊 Analysis Results</h2>
       
       <div class="hashtags">
-        <h3>🔥 Hashtags Tendance</h3>
+        <h3>🔥 Trending Hashtags</h3>
         <div class="hashtag-list" id="trendingHashtags"></div>
       </div>
 
       <div class="hashtags">
-        <h3>🎯 Hashtags de Niche</h3>
+        <h3>🎯 Niche Hashtags</h3>
         <div class="hashtag-list" id="nicheHashtags"></div>
       </div>
 
       <div class="music">
-        <h3>🎵 Recommandations Musicales</h3>
+        <h3>🎵 Music Recommendations</h3>
         <div id="musicTracks"></div>
       </div>
 
       <div class="virality-score">
         <div class="score-value" id="scoreValue">0</div>
-        <div class="score-label">Score de Viralité</div>
+        <div class="score-label">Virality Score</div>
       </div>
     </div>
   </div>
@@ -325,7 +325,7 @@
       e.preventDefault();
 
       if (credits <= 0) {
-        alert('❌ Vous n\'avez plus de crédits! Achetez-en plus pour continuer.');
+        alert('❌ You have no more credits! Buy more to continue.');
         return;
       }
 
@@ -372,7 +372,7 @@
     });
 
     function displayResults(data) {
-      // Hashtags Tendance
+      // Trending Hashtags
       const trendingContainer = document.getElementById('trendingHashtags');
       trendingContainer.innerHTML = '';
       if (data.trending_hashtags) {
@@ -384,7 +384,7 @@
         });
       }
 
-      // Hashtags de Niche
+      // Niche Hashtags
       const nicheContainer = document.getElementById('nicheHashtags');
       nicheContainer.innerHTML = '';
       if (data.niche_hashtags) {
@@ -411,7 +411,7 @@
         });
       }
 
-      // Score de Viralité
+      // Virality Score
       const scoreElement = document.getElementById('scoreValue');
       if (data.virality_score) {
         scoreElement.textContent = data.virality_score;
