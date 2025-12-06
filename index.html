@@ -229,6 +229,25 @@
       margin-top: 10px;
     }
   </style>
+  
+    <!-- Firebase SDK -->
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+      <script>
+                // Firebase configuration
+                const firebaseConfig = {
+                              apiKey: "AIzaSyClaxiy_YyFXzCHclP5jnxmYJkUTUDrtBU",
+                              authDomain: "tiktok-viral-optimizer.firebaseapp.com",
+                              projectId: "tiktok-viral-optimizer",
+                              storageBucket: "tiktok-viral-optimizer.firebasestorage.app",
+                              messagingSenderId: "282243849698",
+                              appId: "1:282243849698:web:b9d15bd89f5decba4cadbb",
+                              measurementId: "G-YDNTJTMW2Y"
+                                        };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                const auth = firebase.auth();
+            </script>
 </head>
 <body>
   <div class="container">
