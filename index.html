@@ -590,21 +590,19 @@
 
   <script>
     const API_URL = 'https://video-style-cloner-backend-production.up.railway.app/test';
-    let credits = 1;
+
 
     const form = document.getElementById('videoForm');
     const loading = document.getElementById('loading');
-    const results = document.getElementById('results');
+
     const generateBtn = document.getElementById('generateBtn');
     const creditCount = document.getElementById('creditCount');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      if (credits <= 0) {
-        alert('❌ You have no more credits! Buy more to continue.');
-        return;
-      }
+
+      
 
       const videoUrl = document.getElementById('videoUrl').value;
       const platform = document.getElementById('platform').value;
@@ -631,9 +629,44 @@
         const data = await response.json();
 
         if (data.success) {
-          // Déduire 1 crédit
-          credits--;
-          creditCount.textContent = credits;
+                          // Check if user is logged in
+                const currentUser = auth.currentUser;
+                if (!currentUser) {
+                    alert('❌ Please sign in to use this feature!');
+                    form.style.display = 'block';
+                    loading.style.display = 'none';
+                    return;
+                }
+                // Deduct credit and update Firestore
+                const userRef = db.collection('users').doc(currentUser.uid);
+                const userDoc = await userRef.get();
+                const currentCredits = userDoc.data().credits || 0;
+                
+                if (currentCredits <= 0) {
+                    alert('❌ No credits remaining! Please buy more credits.');
+                    form.style.display = 'block';
+                    loading.style.display = 'none';
+                    return;
+                }
+                
+                // Deduct 1 credit
+                await userRef.update({
+                    credits: firebase.firestore.FieldValue.increment(-1)
+                });
+                
+                // Update UI
+                creditCount.textContent = currentCredits - 1;
+                
+                // Save to history
+                await userRef.update({
+                    history: firebase.firestore.FieldValue.arrayUnion({
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        videoUrl: videoUrl,
+                        platform: platform,
+                        niche: niche,
+                        results: data.data
+                    })
+                
 
           // Afficher les résultats
           displayResults(data.data);
