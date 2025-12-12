@@ -483,6 +483,7 @@
     <!-- Firebase SDK -->
       <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  
       <script>
                 // Firebase configuration
                 const firebaseConfig = {
@@ -497,6 +498,7 @@
                 // Initialize Firebase
                 firebase.initializeApp(firebaseConfig);
                 const auth = firebase.auth();
+                const db = firebase.firestore();
             </script>
 </head>
 <body>
@@ -799,6 +801,13 @@
                                             } catch (error) {
                                                 alert('Sign up error: ' + error.message);
                                             }
+                                      // Create user profile in Firestore
+                    await db.collection('users').doc(userCredential.user.uid).set({
+                        email: email,
+                        credits: 10, // Starting credits
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        history: []
+                    });
                                         });
 
                 // Login
@@ -832,6 +841,21 @@
                                                 userInfo.style.display = 'flex';
                                                 authBtn.style.display = 'none';
                                                 // TODO: Fetch and display user credits from Firestore
+                                                // Fetch and display user credits from Firestore
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    creditCount.textContent = userData.credits || 0;
+                } else {
+                    // Create user document if it doesn't exist
+                    await db.collection('users').doc(user.uid).set({
+                        email: user.email,
+                        credits: 10,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        history: []
+                    });
+                    creditCount.textContent = '10';
+                }
                                                 creditCount.textContent = '0'; // Placeholder
                                             } else {
                                                 // User is signed out
