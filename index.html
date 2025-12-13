@@ -416,26 +416,50 @@
                           display: block;
                       }
 
-            .auth-input {
-                          width: 100%;
-                          padding: 15px;
-                          margin-bottom: 15px;
-                          border: 2px solid #e0e0e0;
-                          border-radius: 10px;
-                          font-size: 16px;
-                          box-sizing: border-box;
-                      }
+                .auth-input {
+        width: 100%;
+        padding: 14px 16px;
+        margin-bottom: 16px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 15px;
+        font-family: inherit;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-sizing: border-box;
+        background: white;
+    }
+    
+    .auth-input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(102, 126, 234, 0.15);
+        transform: translateY(-1px);
+    }
 
-            .auth-submit {
-                          width: 100%;
-                          padding: 15px;
-                          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                          color: white;
-                          border: none;
-                          border-radius: 10px;
-                          font-size: 16px;
-                          font-weight: 600;
-                          cursor: pointer;
+                .auth-submit {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .auth-submit:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+    
+    .auth-submit:active {
+        transform: translateY(0) scale(0.98);
+    }
                       }
 
             .user-info {
