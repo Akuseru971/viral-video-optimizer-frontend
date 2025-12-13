@@ -77,9 +77,11 @@
     }om: 10px;
     }
     
-    .subtitle {
-      color: #666;
-      font-size: 1.1em;
+        .subtitle {
+        color: #7c7c7c;
+        font-size: 1.15em;
+        font-weight: 400;
+        margin-bottom: 10px;
     }
     
     .credit-banner {
@@ -160,15 +162,22 @@
         transform: scale(1.05);
     }
     
-    .btn-buy-credits {
-      background: white;
-      color: #667eea;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.2s;
+        .btn-buy-credits {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.95em;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-buy-credits:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
     }
     
     .btn-buy-credits:hover {
@@ -179,23 +188,43 @@
       margin-bottom: 25px;
     }
     
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #333;
-      font-size: 1.1em;
+        label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #2d3748;
+        font-size: 1.05em;
+        letter-spacing: -0.01em;
+    }
     }
     
-    input[type="text"],
+        input[type="text"],
     select,
     textarea {
-      width: 100%;
-      padding: 12px;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 1em;
-      transition: border-color 0.3s;
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 1em;
+        font-family: inherit;
+        background: white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(102, 126, 234, 0.15);
+        transform: translateY(-1px);
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    } transition: border-color 0.3s;
     }
     
     input[type="text"]:focus,
