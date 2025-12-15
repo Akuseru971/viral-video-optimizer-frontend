@@ -945,7 +945,7 @@ input[type="text"],
       <script>
                 // Modal elements
                 const authModal = document.getElementById('authModal');
-                const authBtn = document.getElementById('authBtn');
+//                 const authBtn = document.getElementById('authBtn');
                 const authClose = document.querySelector('.auth-close');
                 const signupForm = document.getElementById('signupForm');
                 const loginForm = document.getElementById('loginForm');
@@ -979,7 +979,7 @@ input[type="text"],
                           });
 
                 // Modal controls
-                authBtn.addEventListener('click', showAuthModal);
+//                 authBtn.addEventListener('click', showAuthModal);
                 authClose.addEventListener('click', hideAuthModal);
                 window.addEventListener('click', (e) => {
                               if (e.target === authModal) hideAuthModal();
@@ -1035,7 +1035,7 @@ input[type="text"],
                                                 // User is signed in
                                                 userEmail.textContent = user.email;
                                                 userInfo.style.display = 'flex';
-                                                authBtn.style.display = 'none';
+//                                                 authBtn.style.display = 'none';
                                                 // TODO: Fetch and display user credits from Firestore
                                                 // Fetch and display user credits from Firestore
                 const userDoc = await db.collection('users').doc(user.uid).get();
